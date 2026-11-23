@@ -5,7 +5,6 @@ import 'package:arcade_motoru/surus.dart';
 import 'package:flutter/material.dart';
 import 'package:studio_core/app/arcade_stage.dart';
 import 'package:studio_core/app/game_api.dart';
-import 'package:studio_core/core/game_rules.dart';
 
 const parkId = 'oyun-2b-park-etme';
 
@@ -88,10 +87,10 @@ final parkConfig = GameConfig(
   rules: parkRules,
   buildPlay: (ctx) => ArcadeStage(
     ctx: ctx,
-    create: () => parkRules.createSim((ctx.generated as GeneratedLevel).puzzle),
+    create: () => parkRules.createSim(ctx.generated.puzzle),
     paint: (c, s, p, t) {
       arcadeLang = ctx.lang;
-      paintPark(c, s, p, t);
+      paintPark(c, s, p, t, ctx.lang, kParkTheme);
     },
     sound: parkSound,
     howTo: const [
